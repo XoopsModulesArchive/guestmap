@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="styles.css" type="text/css" />
+<script type="text/javascript" src="gm_conf.js"></script>
+<script type="text/javascript" src="gm_main.js"></script>
+<script type="text/javascript">window.onload=init;</script>
+
+<div id="guestmap">
+	
+	<h2 id="gmTitle"></h2>
+
+	<ul id="mapButtons">
+		<li id="buttonZoomIn"><a href="javascript:zoom(1.2)"><{$smarty.const._MD_GM_ZOOMIN}></a></li>
+		<li id="buttonZoomOut"><a href="javascript:zoom(0.833)"><{$smarty.const._MD_GM_ZOOMOUT}></a></li>
+		<li id="buttonChangeView"><a href="javascript:changeView()"><{$smarty.const._MD_GM_CHANGEVIEW}></a></li>
+	</ul>
+
+	<div id="mapBox">
+		<img id="mapImage" src="back.png" alt="" onmousemove="cursorLocation()" onclick="showForm()" />
+		<div id="mapIcons"></div>
+		<div id="tip" onmouseover="show('tip')" onmouseout="hide('tip')"></div>
+		<div id="iconPreview"></div>
+		<img src="pointer.gif" id="mapPointer" alt="" />
+
+		<form method="post" action="guestmap_place.php" id="mapForm" onsubmit="return validate()">
+			<div>
+				<img src="close.gif" onclick="hideForm()" class="close" alt="<{$smarty.const._MD_GM_CLOSE}>" />
+				
+				<h3><{$smarty.const._MD_GM_PLACEANICON}></h3>
+
+				<div class="form">
+					<input type="hidden" name="pos_x" value="0" id="cursorX" />
+					<input type="hidden" name="pos_y" value="0" id="cursorY" />
+					<input type="hidden" name="icon" value="" id="iconValue" />
+					<input type="hidden" name="guestmap_id" id="gmId" value="" />
+					
+					<label for="nameValue"><{$smarty.const._MD_GM_NAME}></label>
+					<input type="text" name="name" id="nameValue" maxlength="30" value="<{$xoops_uname}>" />
+
+					<label for="messageValue"><{$smarty.const._MD_GM_MESSAGE}></label>
+					<input type="text" name="message" id="messageValue" maxlength="255" />
+
+					<input type="submit" value="<{$smarty.const._SUBMIT}>" class="button" />
+				</div>
+
+				<div id="formIcons" title="<{$smarty.const._MD_GM_CLICKICONTOSELECT}>">
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="messages">
+
+		<h3><{$smarty.const._MD_GM_LISTVIEW}></h3>
+		
+		<ul id="messageList"><li class="hidden"></li></ul>
+	</div>
+
+</div>
